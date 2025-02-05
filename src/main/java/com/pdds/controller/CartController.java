@@ -1,8 +1,9 @@
 package com.pdds.controller;
 
 import com.pdds.domain.Cart;
-import com.pdds.domain.SelectedProduct;
+import com.pdds.domain.Order;
 import com.pdds.domain.User;
+import com.pdds.dto.SelectedProductResponseDTO;
 import com.pdds.dto.MessageResponseDTO;
 import com.pdds.dto.UpdateCartDTO;
 import com.pdds.service.CartService;
@@ -30,13 +31,13 @@ public class CartController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<SelectedProduct>> getAllItemFromCart(@AuthenticationPrincipal User principal){
+    public ResponseEntity<List<SelectedProductResponseDTO>> getAllItemFromCart(@AuthenticationPrincipal User principal){
 
         Optional<Cart> opt = cartService.findByUser(principal);
         if (opt.isEmpty()) return ResponseEntity.notFound().build();
 
         Cart cart = opt.get();
-        return ResponseEntity.ok().body(cart.getShoppingCartProducts());
+        return ResponseEntity.ok().body(cartService.listOfItems(cart));
 
     }
 
@@ -61,8 +62,8 @@ public class CartController {
         Optional<Cart> opt = cartService.findByUser(principal);
         if (opt.isEmpty()) return ResponseEntity.notFound().build();
 
-        boolean checkout = orderService.generateOrder(opt.get());
-        if (!checkout) return ResponseEntity.badRequest().build();
+        Order checkout = orderService.generateOrder(opt.get());
+        if (checkout == null) return ResponseEntity.badRequest().build();
 
         return ResponseEntity.status(200).body(new MessageResponseDTO("Order created"));
     }

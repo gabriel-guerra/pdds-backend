@@ -1,18 +1,13 @@
 package com.pdds.service;
 
 import com.pdds.domain.*;
-import com.pdds.domain.enums.OrderStatus;
 import com.pdds.domain.enums.SelectedProductOperation;
+import com.pdds.dto.SelectedProductResponseDTO;
 import com.pdds.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -60,15 +55,13 @@ public class CartService {
 
     public boolean addToCart(Long productId, int qt, User principal){
         Optional<Product> optProduct = productService.findById(productId);
-        if (optProduct.isEmpty()) return false;
-
-        Product product = optProduct.get();
-        double total = product.getPrice() * qt;
-
         Optional<Cart> optCart = findByUser(principal);
-        if (optCart.isEmpty()) return false;
+        if (optProduct.isEmpty() || optCart.isEmpty()) return false;
 
         Cart cart = optCart.get();
+        Product product = optProduct.get();
+        double total = 0;
+
         List<SelectedProduct> selProds = cart.getShoppingCartProducts();
 
         for(SelectedProduct selProd : selProds){
@@ -94,6 +87,12 @@ public class CartService {
 
         selProds.add(selectedProductService.create(sp));
         cart.setShoppingCartProducts(selProds);
+
+        for(SelectedProduct selectedProduct : selProds){
+            total += selectedProduct.getTotal();
+        }
+
+        cart.setTotal(total);
         cartRepository.save(cart);
         return true;
     }
@@ -133,6 +132,17 @@ public class CartService {
 
     }
 
+    public List<SelectedProductResponseDTO> listOfItems(Cart cart){
 
+        List<SelectedProductResponseDTO> listOfItems = new ArrayList<>();
+
+        for (SelectedProduct sp : cart.getShoppingCartProducts()){
+            SelectedProductResponseDTO dto = new SelectedProductResponseDTO(sp.getId(), sp.getOperation(), sp.getQuantity(), sp.getTotal(), sp.getProduct());
+            listOfItems.add(dto);
+        }
+
+        return listOfItems;
+
+    }
 
 }

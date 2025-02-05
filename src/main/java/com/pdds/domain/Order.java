@@ -4,9 +4,7 @@ import com.pdds.domain.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "orders")
@@ -21,7 +19,7 @@ public class Order {
     private long id;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SelectedProduct> orderProducts;
+    private List<SelectedProduct> orderProducts = new ArrayList<>();
     private double total;
     private OrderStatus status;
 
@@ -30,7 +28,7 @@ public class Order {
     private User userId;
 
     public Order(List<SelectedProduct> orderProducts, OrderStatus status, User userId) {
-        this.orderProducts = orderProducts;
+        this.orderProducts = new ArrayList<>(orderProducts);
 
         double total = 0;
         for (SelectedProduct sp : orderProducts){
@@ -41,4 +39,5 @@ public class Order {
         this.status = status;
         this.userId = userId;
     }
+
 }

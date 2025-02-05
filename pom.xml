@@ -11,8 +11,8 @@
 	<groupId>com.pdds</groupId>
 	<artifactId>pdds</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservices</name>
-	<description>pdds microservices backend project</description>
+	<name>pdds</name>
+	<description>pdds backend project</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -113,6 +113,26 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

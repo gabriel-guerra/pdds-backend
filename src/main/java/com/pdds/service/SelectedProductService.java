@@ -31,9 +31,8 @@ public class SelectedProductService {
         return selectedProductRepository.findAll();
     }
 
-    public SelectedProduct findById(Long id){
-        Optional<SelectedProduct> opt = selectedProductRepository.findById(id);
-        return opt.isPresent() ? opt.get() : null;
+    public Optional<SelectedProduct> findById(Long id){
+        return selectedProductRepository.findById(id);
     }
 
     public List<SelectedProduct> findByCart(Cart cart){
@@ -45,6 +44,12 @@ public class SelectedProductService {
     }
 
     public void update(SelectedProduct selectedProduct){
+        selectedProductRepository.save(selectedProduct);
+    }
+
+    public void updateQuantity(SelectedProduct selectedProduct, int newQuantity){
+        selectedProduct.setQuantity(newQuantity);
+        selectedProduct.setTotal(newQuantity * selectedProduct.getProduct().getPrice());
         selectedProductRepository.save(selectedProduct);
     }
 

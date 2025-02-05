@@ -12,6 +12,7 @@ import com.pdds.service.CartService;
 import com.pdds.service.ProductService;
 import com.pdds.service.UserService;
 import jakarta.servlet.Filter;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,12 +89,18 @@ public class CartControllerTest {
 
         User user = (User) userService.findByEmail("clark.kent@example.com");
         String generatedToken = tokenService.generateToken(user);
+        Product product1 = productService.findByRegex("PlayStation").get(0);
+        Product product2 = productService.findByRegex("iPhone").get(0);
+
+        cartService.addToCart(product1.getId(), 5, user);
+        cartService.addToCart(product2.getId(), 2, user);
 
         mockMvc.perform(get("/cart")
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("authorization", "Bearer " + generatedToken))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0]").exists())
         ;
 
     }

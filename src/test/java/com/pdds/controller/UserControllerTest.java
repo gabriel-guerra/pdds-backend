@@ -10,6 +10,7 @@ import com.pdds.repository.UserRepository;
 import com.pdds.security.TokenService;
 import jakarta.servlet.Filter;
 import jakarta.servlet.ServletException;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -76,6 +77,7 @@ public class UserControllerTest {
                         .header("authorization", "Bearer " + tokenAdm))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", Matchers.not(Matchers.empty())))
         ;
 
     }

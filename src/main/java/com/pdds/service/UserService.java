@@ -99,7 +99,7 @@ public class UserService {
         newUser = userRepository.save(newUser);
 
         // initiate shopping cart after creation of a user
-        Cart cart = new Cart(new ArrayList<>(), 0, newUser);
+        Cart cart = new Cart(new ArrayList<>(), newUser);
         cartService.create(cart);
 
         return true;

@@ -9,6 +9,7 @@ import com.pdds.repository.ProductRepository;
 import com.pdds.service.ProductService;
 import jakarta.servlet.Filter;
 import jakarta.servlet.ServletException;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -113,6 +114,7 @@ public class ProductControllerTest {
                         .header("authorization", "Bearer " + tokenUser))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", Matchers.not(Matchers.empty())))
         ;
 
     }
@@ -155,6 +157,7 @@ public class ProductControllerTest {
                         .header("authorization", "Bearer " + tokenUser))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", Matchers.not(Matchers.empty())))
         ;
 
     }

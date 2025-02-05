@@ -67,7 +67,7 @@ public class CartServiceTest {
     @Test
     public void createCartTest(){
         User user = generateUserForTest();
-        Cart cart = new Cart(new ArrayList<>(), 0, user);
+        Cart cart = new Cart(new ArrayList<>(), user);
 
         Cart createdCart = cartService.create(cart);
 
@@ -78,7 +78,7 @@ public class CartServiceTest {
     @Test
     public void findCartByIdTest(){
         User user = generateUserForTest();
-        Cart cart = cartService.create(new Cart(new ArrayList<>(), 0, user));
+        Cart cart = cartService.create(new Cart(new ArrayList<>(), user));
 
         Optional<Cart> opt = cartService.findById(cart.getId());
         Assertions.assertTrue(opt.isPresent());
@@ -119,7 +119,7 @@ public class CartServiceTest {
     @Test
     public void deleteCartByIdTest(){
         User user = generateUserForTest();
-        Cart cart = cartService.create(new Cart(new ArrayList<>(), 0, user));
+        Cart cart = cartService.create(new Cart(new ArrayList<>(), user));
 
         boolean delete = cartService.delete(cart.getId());
 
@@ -130,7 +130,7 @@ public class CartServiceTest {
     @Test
     public void deleteParamCartTest(){
         User user = generateUserForTest();
-        Cart cart = cartService.create(new Cart(new ArrayList<>(), 0, user));
+        Cart cart = cartService.create(new Cart(new ArrayList<>(), user));
 
         boolean delete = cartService.delete(cart);
 
@@ -183,12 +183,13 @@ public class CartServiceTest {
 
         List<SelectedProduct> products = cart.getShoppingCartProducts();
 
-        for (SelectedProduct sp : products){
-            if (sp.getProduct().getId() == product.getId()){
-                Assertions.assertEquals((qt1+qt2), sp.getQuantity());
-                Assertions.assertEquals(((qt1+qt2)*product.getPrice()), sp.getTotal());
-            }
-        }
+        Assertions.assertTrue(
+                products.stream().anyMatch(sp ->
+                        sp.getProduct().getId() == product.getId() &&
+                        sp.getQuantity() == (qt1+qt2) &&
+                        sp.getTotal() == (qt1+qt2)*product.getPrice()
+                )
+        );
 
     }
 
@@ -252,7 +253,6 @@ public class CartServiceTest {
 
         Optional<Cart> opt = cartRepository.findByUser(user);
         Cart cart = opt.get();
-
 
         //remove - actual test
         boolean remove = cartService.removeFromCart(product.getId(), qtToRemove, cart);

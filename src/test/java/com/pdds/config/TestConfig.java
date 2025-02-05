@@ -96,7 +96,6 @@ public class TestConfig {
 
                 Cart cart = new Cart(
                         new ArrayList<>(),
-                        0,
                         user
                 );
 

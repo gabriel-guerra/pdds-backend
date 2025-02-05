@@ -28,9 +28,13 @@ public class Cart {
     @JoinColumn(name = "user_id", unique = true)
     private User userId;
 
-    public Cart(List<SelectedProduct> shoppingCart, double total, User userId) {
+    public Cart(List<SelectedProduct> shoppingCart, User userId) {
         this.shoppingCartProducts = shoppingCart;
-        this.total = total;
+
+        for (SelectedProduct product : shoppingCart){
+            this.total += product.getTotal();
+        }
+
         this.userId = userId;
     }
 }
