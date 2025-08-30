@@ -1,0 +1,87 @@
+{
+  "users": [
+    {
+      "email": "admin@example.com",
+      "password": "123Admin",
+      "fullName": "Admin",
+      "birthday": "01/01/1900",
+      "role": "ADMIN"
+    },
+    {
+      "email": "user@example.com",
+      "password": "123User",
+      "fullName": "User",
+      "birthday": "01/01/1900",
+      "role": "USER"
+    },
+    {
+      "email": "john.doe@example.com",
+      "password": "securepassword123",
+      "fullName": "John Doe",
+      "birthday": "01/01/1980",
+      "role": "ADMIN"
+    },
+    {
+      "email": "clark.kent@example.com",
+      "password": "differentPassword!",
+      "fullName": "Clark Kent",
+      "birthday": "01/01/1950",
+      "role": "USER"
+    },
+    {
+      "email": "whitney.clark@example.com",
+      "password": "passWord!23",
+      "fullName": "Whitney Clark",
+      "birthday": "01/01/1970",
+      "role": "USER"
+    },
+    {
+      "email": "justin.lucas@example.com",
+      "password": "password",
+      "fullName": "Justin Lucas",
+      "birthday": "01/01/1990",
+      "role": "ADMIN"
+    },
+    {
+      "email": "fabian.mills@example.com",
+      "password": "passwordz",
+      "fullName": "Fabian Mills",
+      "birthday": "01/01/1977",
+      "role": "ADMIN"
+    },
+    {
+      "email": "romeo.kling@example.com",
+      "password": "passwordallaround",
+      "fullName": "Romeo Kling",
+      "birthday": "01/01/1987",
+      "role": "USER"
+    }
+  ],
+  "products": [
+    {
+      "name": "PlayStation 5",
+      "price": 400.0,
+      "stock": 1000
+    },
+    {
+      "name": "PlayStation 4",
+      "price": 300.0,
+      "stock": 5000
+    },
+    {
+      "name": "Nintendo Switch",
+      "price": 250.0,
+      "stock": 500
+    },
+    {
+      "name": "Xbox Series X",
+      "price": 400.0,
+      "stock": 3500
+    },
+    {
+      "name": "iPhone 15",
+      "price": 800.0,
+      "stock": 200
+    }
+  ]
+}
