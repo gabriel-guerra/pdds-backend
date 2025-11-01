@@ -5,7 +5,7 @@ import com.pdds.config.TestConfig;
 import com.pdds.domain.User;
 import com.pdds.domain.enums.Role;
 import com.pdds.dto.ChangePasswordDTO;
-import com.pdds.dto.UserDTO;
+import com.pdds.dto.CreateUserDTO;
 import com.pdds.repository.UserRepository;
 import com.pdds.security.TokenService;
 import jakarta.servlet.Filter;
@@ -132,7 +132,7 @@ public class UserControllerTest {
 
         User user = (User)userRepository.findByEmail("fabian.mills@example.com");
 
-        UserDTO updatedUser = new UserDTO(
+        CreateUserDTO updatedUser = new CreateUserDTO(
                 "john.wick@email.com",
                 "ABC123",
                 "Jonathan Wick",
@@ -155,7 +155,7 @@ public class UserControllerTest {
     public void failUpdateIfUserIsNotAdminTest() throws Exception{
 
         User user = (User)userRepository.findByEmail("fabian.mills@example.com");
-        UserDTO updatedUser = new UserDTO(
+        CreateUserDTO updatedUser = new CreateUserDTO(
                 "john.wick@email.com",
                 "ABC123",
                 "Jonathan Wick",

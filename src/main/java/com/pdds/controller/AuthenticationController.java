@@ -2,10 +2,7 @@ package com.pdds.controller;
 
 import com.pdds.domain.User;
 import com.pdds.domain.enums.Role;
-import com.pdds.dto.AuthenticationDTO;
-import com.pdds.dto.LoginResponseDTO;
-import com.pdds.dto.MessageResponseDTO;
-import com.pdds.dto.UserDTO;
+import com.pdds.dto.*;
 import com.pdds.security.TokenService;
 import com.pdds.service.UserService;
 import jakarta.validation.Valid;
@@ -43,9 +40,9 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<MessageResponseDTO> register(@RequestBody @Valid UserDTO data){
-        if (data.role().equals(Role.ADMIN)) return ResponseEntity.badRequest().build();
 
-        boolean registration = userService.create(data);
+        CreateUserDTO user = new CreateUserDTO(data.email(), data.password(), data.fullName(), data.birthday(), Role.USER);
+        boolean registration = userService.create(user);
 
         if (!registration){
             return ResponseEntity.badRequest().body(new MessageResponseDTO("Email already used"));
@@ -56,7 +53,9 @@ public class AuthenticationController {
 
     @PostMapping("/register-adm")
     public ResponseEntity<MessageResponseDTO> registerAdm(@RequestBody @Valid UserDTO data){
-        boolean registration = userService.create(data);
+
+        CreateUserDTO user = new CreateUserDTO(data.email(), data.password(), data.fullName(), data.birthday(), Role.ADMIN);
+        boolean registration = userService.create(user);
 
         if (!registration){
             return ResponseEntity.badRequest().body(new MessageResponseDTO("Email already used"));

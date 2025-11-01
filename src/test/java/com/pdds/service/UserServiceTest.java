@@ -5,7 +5,7 @@ import com.pdds.domain.User;
 import com.pdds.domain.enums.Role;
 import com.pdds.dto.ChangePasswordDTO;
 import com.pdds.dto.UpdateUserDTO;
-import com.pdds.dto.UserDTO;
+import com.pdds.dto.CreateUserDTO;
 import com.pdds.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -113,7 +113,7 @@ public class UserServiceTest {
     @Test
     public void findUserByEmail() throws Exception{
 
-        UserDTO user = new UserDTO(
+        CreateUserDTO user = new CreateUserDTO(
                 "rick.richards@example.com",
                 "thesafestpassword",
                 "Rick Richards",
@@ -135,7 +135,7 @@ public class UserServiceTest {
     @Test
     public void createUserTest() throws Exception{
 
-        UserDTO userDTO = new UserDTO(
+        CreateUserDTO createUserDTO = new CreateUserDTO(
                 "jimmy.quill@example.com",
                 "apasswordtoremember",
                 "Jimmy Quill",
@@ -143,10 +143,10 @@ public class UserServiceTest {
                 Role.ADMIN
         );
 
-        boolean registration = userService.create(userDTO);
+        boolean registration = userService.create(createUserDTO);
 
         Assertions.assertTrue(registration);
-        Assertions.assertFalse(userService.create(userDTO));
+        Assertions.assertFalse(userService.create(createUserDTO));
 
     }
 

@@ -5,19 +5,14 @@ import com.pdds.domain.enums.Role;
 import com.pdds.dto.ChangePasswordDTO;
 import com.pdds.dto.MessageResponseDTO;
 import com.pdds.dto.UpdateUserDTO;
-import com.pdds.dto.UserDTO;
 import com.pdds.service.UserService;
-import com.pdds.utils.Utils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.attribute.UserPrincipal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController

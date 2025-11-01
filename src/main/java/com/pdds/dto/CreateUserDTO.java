@@ -2,11 +2,12 @@ package com.pdds.dto;
 
 import com.pdds.domain.enums.Role;
 
-public record UserDTO(
+public record CreateUserDTO(
         String email,
         String password,
         String fullName,
-        String birthday
+        String birthday,
+        Role role
 ) {
 
 

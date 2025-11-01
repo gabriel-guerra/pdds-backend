@@ -4,7 +4,7 @@ import com.pdds.domain.Cart;
 import com.pdds.domain.User;
 import com.pdds.dto.ChangePasswordDTO;
 import com.pdds.dto.UpdateUserDTO;
-import com.pdds.dto.UserDTO;
+import com.pdds.dto.CreateUserDTO;
 import com.pdds.repository.UserRepository;
 import com.pdds.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,7 +86,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public boolean create(UserDTO data){
+    public boolean create(CreateUserDTO data){
 
         if (findByEmail(data.email()) != null){
             return false;

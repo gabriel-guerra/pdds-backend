@@ -47,6 +47,7 @@ class SecurityConfig {
                         .requestMatchers("/users/{id}/change-pw").authenticated()
                         .requestMatchers("/users").hasAnyRole("ADMIN")
                         .requestMatchers("/users/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/products/").permitAll()
                         .requestMatchers("/products/create").hasAnyRole("ADMIN")
                         .requestMatchers("/products/update/{id}").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/products/{id}").hasAnyRole("ADMIN")

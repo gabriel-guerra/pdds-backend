@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "products")
@@ -30,10 +32,14 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
-    public Product(String name, double price, int stock) {
+    @Column(name= "images")
+    private List<String> images;
+
+    public Product(String name, double price, int stock, List<String> images) {
         this.name = name;
         this.price = price;
         this.stock = stock;
+        this.images = images;
     }
 
 }

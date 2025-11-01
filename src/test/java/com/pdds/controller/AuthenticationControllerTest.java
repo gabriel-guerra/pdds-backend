@@ -5,10 +5,9 @@ import com.pdds.config.TestConfig;
 import com.pdds.domain.User;
 import com.pdds.domain.enums.Role;
 import com.pdds.dto.AuthenticationDTO;
-import com.pdds.dto.UserDTO;
+import com.pdds.dto.CreateUserDTO;
 import com.pdds.repository.UserRepository;
 import com.pdds.security.TokenService;
-import com.pdds.utils.Utils;
 import jakarta.servlet.Filter;
 import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -69,7 +67,7 @@ public class AuthenticationControllerTest {
     @Test
     public void registerUserTest() throws Exception{
 
-        UserDTO userDto = new UserDTO(
+        CreateUserDTO createUserDto = new CreateUserDTO(
                 "mary.jane@example.com",
                 "securepassword123",
                 "Mary Jane",
@@ -77,7 +75,7 @@ public class AuthenticationControllerTest {
                 Role.USER
         );
 
-        String jsonRequest = objectMapper.writeValueAsString(userDto);
+        String jsonRequest = objectMapper.writeValueAsString(createUserDto);
 
         mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -86,18 +84,18 @@ public class AuthenticationControllerTest {
                 .andExpect(jsonPath("$.message").value("User created successfully"))
         ;
 
-        User user = (User) userRepository.findByEmail(userDto.email());
+        User user = (User) userRepository.findByEmail(createUserDto.email());
 
-        Assertions.assertEquals(userDto.email(), user.getEmail());
-        Assertions.assertEquals(userDto.fullName(), user.getFullName());
-        Assertions.assertEquals(userDto.role(), user.getRole());
+        Assertions.assertEquals(createUserDto.email(), user.getEmail());
+        Assertions.assertEquals(createUserDto.fullName(), user.getFullName());
+        Assertions.assertEquals(createUserDto.role(), user.getRole());
 
     }
 
     @Test
     public void failRegisterAdminOnOpenEndpointTest() throws Exception{
 
-        UserDTO userDto = new UserDTO(
+        CreateUserDTO createUserDto = new CreateUserDTO(
                 "john.doe@example.com",
                 "securepassword123",
                 "John Doe",
@@ -105,7 +103,7 @@ public class AuthenticationControllerTest {
                 Role.ADMIN
         );
 
-        String jsonRequest = objectMapper.writeValueAsString(userDto);
+        String jsonRequest = objectMapper.writeValueAsString(createUserDto);
 
         mockMvc.perform(post("/auth/register")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -121,7 +119,7 @@ public class AuthenticationControllerTest {
         User adm = (User) userRepository.findByEmail("john.doe@example.com");
         String token = tokenService.generateToken(adm);
 
-        UserDTO userDto = new UserDTO(
+        CreateUserDTO createUserDto = new CreateUserDTO(
                 "mary.jane@example.com",
                 "securepassword123",
                 "Mary Jane",
@@ -129,7 +127,7 @@ public class AuthenticationControllerTest {
                 Role.ADMIN
         );
 
-        String jsonRequest = objectMapper.writeValueAsString(userDto);
+        String jsonRequest = objectMapper.writeValueAsString(createUserDto);
 
         mockMvc.perform(post("/auth/register-adm")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -139,11 +137,11 @@ public class AuthenticationControllerTest {
                 .andExpect(jsonPath("$.message").value("User created successfully"))
         ;
 
-        User user = (User) userRepository.findByEmail(userDto.email());
+        User user = (User) userRepository.findByEmail(createUserDto.email());
 
-        Assertions.assertEquals(userDto.email(), user.getEmail());
-        Assertions.assertEquals(userDto.fullName(), user.getFullName());
-        Assertions.assertEquals(userDto.role(), user.getRole());
+        Assertions.assertEquals(createUserDto.email(), user.getEmail());
+        Assertions.assertEquals(createUserDto.fullName(), user.getFullName());
+        Assertions.assertEquals(createUserDto.role(), user.getRole());
 
     }
 
