@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class TokenService {
@@ -43,11 +44,12 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         }catch (JWTVerificationException e){
+            System.out.println(e.getMessage());
             return "";
         }
     }
 
     private Instant generateExpirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("+01:00"));
+        return Instant.now().plus(2, ChronoUnit.HOURS);
     }
 }
