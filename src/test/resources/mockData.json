@@ -61,27 +61,32 @@
     {
       "name": "PlayStation 5",
       "price": 400.0,
-      "stock": 1000
+      "stock": 1000,
+      "images": ["https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21"]
     },
     {
       "name": "PlayStation 4",
       "price": 300.0,
-      "stock": 5000
+      "stock": 5000,
+      "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Sony-PlayStation-4-PS4-wDualShock-4.jpg/1200px-Sony-PlayStation-4-PS4-wDualShock-4.jpg"]
     },
     {
       "name": "Nintendo Switch",
       "price": 250.0,
-      "stock": 500
+      "stock": 500,
+      "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Nintendo-Switch-Console-Docked-wJoyConRB.jpg/330px-Nintendo-Switch-Console-Docked-wJoyConRB.jpg"]
     },
     {
       "name": "Xbox Series X",
       "price": 400.0,
-      "stock": 3500
+      "stock": 3500,
+      "images": ["https://cms-assets.xboxservices.com/assets/68/a0/68a0e50d-0d13-42b1-8498-e55cef8a9133.png?n=642227_Hero-Gallery-0_A2_857x676.png"]
     },
     {
       "name": "iPhone 15",
       "price": 800.0,
-      "stock": 200
+      "stock": 200,
+      "images": ["https://www.apple.com/newsroom/images/2023/09/apple-debuts-iphone-15-and-iphone-15-plus/article/Apple-iPhone-15-lineup-color-lineup-geo-230912_big.jpg.large.jpg"]
     }
   ]
 }

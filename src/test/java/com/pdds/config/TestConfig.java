@@ -111,11 +111,21 @@ public class TestConfig {
 
         try{
             for (int i = 0; i<arrProducts.length(); i++){
+
                 JSONObject jo = (JSONObject) arrProducts.get(i);
+
+                JSONArray jsonImages = jo.getJSONArray("images");
+                List<String> images = new ArrayList<>();
+
+                for (int j = 0; j < jsonImages.length(); j++) {
+                    images.add(jsonImages.getString(j));
+                }
+
                 Product product = new Product(
                         (String) jo.get("name"),
                         (double) jo.get("price"),
-                        (int) jo.get("stock")
+                        (int) jo.get("stock"),
+                        images
                 );
 
                 productRepository.save(product);

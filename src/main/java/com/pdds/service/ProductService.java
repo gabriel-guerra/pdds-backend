@@ -49,6 +49,7 @@ public class ProductService {
         productToUpdate.setName(productDTO.name());
         productToUpdate.setPrice(productDTO.price());
         productToUpdate.setStock(productDTO.stock());
+        productToUpdate.setImages(productDTO.images());
 
         productRepository.save(productToUpdate);
 
