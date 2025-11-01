@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -74,7 +76,7 @@ public class ProductControllerTest {
     @Test
     public void createProductTest() throws Exception{
 
-        ProductDTO product = new ProductDTO("Samsung Galaxy S25",1000.0,500);
+        ProductDTO product = new ProductDTO("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         String jsonRequest = objectMapper.writeValueAsString(product);
 
         mockMvc.perform(post("/products/create")
@@ -90,7 +92,7 @@ public class ProductControllerTest {
     @Test
     public void failCreateProductIfUserIsNotAdminTest() throws Exception{
 
-        ProductDTO product = new ProductDTO("Samsung Galaxy S25",1000.0,500);
+        ProductDTO product = new ProductDTO("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         String jsonRequest = objectMapper.writeValueAsString(product);
 
         try {
@@ -122,7 +124,7 @@ public class ProductControllerTest {
     @Test
     public void findProductByIdTest() throws Exception{
 
-        Product product = new Product("Samsung Galaxy S25",1000.0,500);
+        Product product = new Product("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         Product createdProduct = productRepository.save(product);
 
         mockMvc.perform(get("/products/" + createdProduct.getId())
@@ -165,10 +167,10 @@ public class ProductControllerTest {
     @Test
     public void updateProductTest() throws Exception{
 
-        Product product = new Product("Samsung Galaxy S25",1000.0,500);
+        Product product = new Product("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         Product createdProduct = productRepository.save(product);
 
-        ProductDTO dataToUpdateProduct = new ProductDTO("Xiaomi Redmi 15", 799.0, 1500);
+        ProductDTO dataToUpdateProduct = new ProductDTO("Xiaomi Redmi 15", 799.0, 1500, Arrays.asList("https://t2.tudocdn.net/768543?w=1200&fit=clip"));
         String jsonRequest = objectMapper.writeValueAsString(dataToUpdateProduct);
 
         mockMvc.perform(post("/products/update/" + createdProduct.getId())
@@ -184,10 +186,10 @@ public class ProductControllerTest {
     @Test
     public void filUpdateProductIfUserIsNotAdminTest() throws Exception{
 
-        Product product = new Product("Samsung Galaxy S25",1000.0,500);
+        Product product = new Product("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         Product createdProduct = productRepository.save(product);
 
-        ProductDTO dataToUpdateProduct = new ProductDTO("Xiaomi Redmi 15", 799.0, 1500);
+        ProductDTO dataToUpdateProduct = new ProductDTO("Xiaomi Redmi 15", 799.0, 1500, Arrays.asList("https://t2.tudocdn.net/768543?w=1200&fit=clip"));
         String jsonRequest = objectMapper.writeValueAsString(dataToUpdateProduct);
 
         try{
@@ -205,7 +207,7 @@ public class ProductControllerTest {
     @Test
     public void deleteProductTest() throws Exception{
 
-        Product product = new Product("Samsung Galaxy S25",1000.0,500);
+        Product product = new Product("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         Product createdProduct = productRepository.save(product);
 
         mockMvc.perform(delete("/products/" + createdProduct.getId())
@@ -219,7 +221,7 @@ public class ProductControllerTest {
     @Test
     public void failDeleteProductIfUserIsNotAdminTest() throws Exception{
 
-        Product product = new Product("Samsung Galaxy S25",1000.0,500);
+        Product product = new Product("Samsung Galaxy S25",1000.0,500, Arrays.asList("https://samsungbrshop.vtexassets.com/arquivos/ids/265019/1-3267c93e.jpg?v=638919200618000000"));
         Product createdProduct = productRepository.save(product);
 
         try {

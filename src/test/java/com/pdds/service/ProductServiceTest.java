@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class ProductServiceTest {
     @Test
     public void serviceCreateProductTest() throws Exception{
 
-        ProductDTO productDTO = new ProductDTO("Mouse Logitech G", 79.99, 400);
+        ProductDTO productDTO = new ProductDTO("Mouse Logitech G Pro", 79.99, 400, Arrays.asList("https://images.kabum.com.br/produtos/fotos/107333/mouse-gamer-sem-fio-logitech-g-pro-wireless-lightspeed-rgb-lightsync-ambidestro-6-botoes-programaveis-hero-25k-910-005271_1644501564_gg.jpg"));
         boolean create = productService.create(productDTO);
 
         Assertions.assertTrue(create);
@@ -53,7 +54,7 @@ public class ProductServiceTest {
     @Test
     public void serviceFindProductByIdTest() throws Exception{
 
-        Product product = productRepository.save(new Product("Nvidia RTX 4070", 499.0, 350));
+        Product product = productRepository.save(new Product("Nvidia RTX 4070", 499.0, 350, Arrays.asList("https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/news/geforce-rtx-4070/geforce-rtx-4070-newsfeed.png")));
         Optional<Product> opt = productService.findById(product.getId());
 
         Assertions.assertTrue(opt.isPresent());
@@ -77,8 +78,8 @@ public class ProductServiceTest {
     @Test
     public void serviceUpdateProductTest() throws Exception{
 
-        Product createdProduct = productRepository.save(new Product("Grand Theft Auto V PS4", 39.90, 250));
-        ProductDTO dataToUpdate = new ProductDTO("EA FC 25 PS5", 59.99, 4000);
+        Product createdProduct = productRepository.save(new Product("Grand Theft Auto V PS4", 39.90, 250, Arrays.asList("https://m.media-amazon.com/images/I/81htlTqEckL._AC_UF1000,1000_QL80_.jpg")));
+        ProductDTO dataToUpdate = new ProductDTO("EA FC 25 PS5", 59.99, 4000, Arrays.asList("https://m.media-amazon.com/images/I/6190AxEE7WL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_PIRIOFOURANDHALF-medium,BottomLeft,30,-20_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzU2NTk1OSIgZm9udD0iQW1hem9uRW1iZXIgNTAiID41ODg8L3NwYW4+,500,900,420,420,0,0_QL100_.jpg"));
 
         boolean update = productService.update(createdProduct.getId(), dataToUpdate);
 
@@ -94,7 +95,7 @@ public class ProductServiceTest {
     @Test
     public void serviceDeleteProductTest() throws Exception{
 
-        Product product = productRepository.save(new Product("Grand Theft Auto V PS4", 39.90, 250));
+        Product product = productRepository.save(new Product("Grand Theft Auto V PS4", 39.90, 250, Arrays.asList("https://m.media-amazon.com/images/I/81htlTqEckL._AC_UF1000,1000_QL80_.jpg")));
 
         boolean delete = productService.delete(product.getId());
 
