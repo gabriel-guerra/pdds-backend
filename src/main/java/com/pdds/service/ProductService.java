@@ -23,7 +23,7 @@ public class ProductService {
     }
 
     public boolean create(ProductDTO productDTO) {
-        Product product = new Product(productDTO.name(), productDTO.price(), productDTO.stock());
+        Product product = new Product(productDTO.name(), productDTO.price(), productDTO.stock(), productDTO.images());
         productRepository.save(product);
         return true;
     }
