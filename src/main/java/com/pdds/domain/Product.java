@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,10 +33,10 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
-    @ElementCollection
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "images")
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 
     public Product(String name, double price, int stock, List<String> images) {
         this.name = name;
