@@ -32,7 +32,9 @@ public class Product {
     @Column(name = "stock")
     private int stock;
 
-    @Column(name= "images")
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "url")
     private List<String> images;
 
     public Product(String name, double price, int stock, List<String> images) {
