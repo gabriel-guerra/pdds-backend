@@ -23,7 +23,7 @@ INSERT INTO product_images (product_id, images) VALUES (3, 'https://pngimg.com/d
 
 INSERT INTO products (id, name, price, stock) VALUES (4, 'iPhone 17 Pro Max', 15000.0, 200);
 INSERT INTO product_images (product_id, images) VALUES (4, 'https://revendo.ch/cdn/shop/files/apple-iphone-17-pro-apple-a19-pro-3-nm-17-pro-cosmic-orange-orange-guenstig-gebraucht-kaufen-00_grande.png?v=1758094341');
-INSERT INTO product_images (product_id, images) VALUES (4, 'https://pngdownloads.wordpress.com/wp-content/uploads/2025/09/apple-iphone-17-pro-png-1.jpg?w=640';
+INSERT INTO product_images (product_id, images) VALUES (4, 'https://pngimg.com/uploads/iphone17/iphone17_PNG13.png';
 INSERT INTO product_images (product_id, images) VALUES (4, 'https://www.mozillion.com/storage/product_model_images/1757672591_iPhone%2017%20Pro%20-%20Cosmic%20Orange%20-%20Side.png');
 
 
