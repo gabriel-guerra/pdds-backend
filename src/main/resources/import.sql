@@ -11,10 +11,10 @@ INSERT INTO product_images (product_id, images) VALUES (5, 'https://gmedia.plays
 INSERT INTO product_images (product_id, images) VALUES (5, 'https://gmedia.playstation.com/is/image/SIEPDC/PS4_SLIM_Laying-down?$facebook$');
 INSERT INTO product_images (product_id, images) VALUES (5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Sony-PlayStation4-Pro-Console-FL.png/2560px-Sony-PlayStation4-Pro-Console-FL.png');
 
-INSERT INTO products (id, name, price, stock) VALUES (2, 'Nintendo Switch', 2500.0, 500);
-INSERT INTO product_images (product_id, images) VALUES (2, 'https://www.pngall.com/wp-content/uploads/2/Nintendo-Switch-PNG.png');
-INSERT INTO product_images (product_id, images) VALUES (2, 'https://static.vecteezy.com/system/resources/thumbnails/013/007/615/small/set-of-console-game-device-handheld-portable-free-png.png');
-INSERT INTO product_images (product_id, images) VALUES (2, 'https://static.vecteezy.com/system/resources/thumbnails/013/007/607/small/set-of-console-game-device-handheld-portable-free-png.png');
+INSERT INTO products (id, name, price, stock) VALUES (2, 'Nintendo Switch 2', 5000.0, 500);
+INSERT INTO product_images (product_id, images) VALUES (2, 'https://assets.nintendo.com/image/upload/q_auto:best/f_auto/c_fill,w_1025/dpr_2.0/ccb3e8ca3c296e21a8c933e8369031511589d0ef6b079cf5bb3667b09893482c/features/animation-features-hero/m-features-switch');
+INSERT INTO product_images (product_id, images) VALUES (2, 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Nintendo_Switch_2_in_mode_%22handheld%22.png');
+INSERT INTO product_images (product_id, images) VALUES (2, 'https://images.tcdn.com.br/img/img_prod/1211726/nintendo_switch_2_edicao_padrao_1842_1_e62c35067446a22b6e077cabbae5f912.png');
 
 INSERT INTO products (id, name, price, stock) VALUES (3, 'Xbox Series X', 4000.0, 3500);
 INSERT INTO product_images (product_id, images) VALUES (3, 'https://cms-assets.xboxservices.com/assets/68/a0/68a0e50d-0d13-42b1-8498-e55cef8a9133.png?n=642227_Hero-Gallery-0_A2_857x676.png');
