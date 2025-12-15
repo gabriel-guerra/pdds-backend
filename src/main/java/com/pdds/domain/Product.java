@@ -45,4 +45,22 @@ public class Product {
         this.images = images;
     }
 
+    @Column(name = "description", length = 5000)
+    private String description;
+
+    @Column(name = "additional_info", length = 10000)
+    private String additionalInfo;
+
+    @Column(name = "rating")
+    private double rating;
+
+    @Column(name = "discount_percentage")
+    private double discountPercentage;
+
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "categories")
+    private List<String> categories = new ArrayList<>();
+
+
 }
